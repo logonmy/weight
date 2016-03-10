@@ -61,6 +61,8 @@ class DB(object):
     @params should be a dict
     '''
     def insert(self, name, params):
+        if not self.hasTable(name):
+            return print('The table is not exsit!')
         keys, values = [], []
         for k, v in params.items():
             keys.append(k)
@@ -81,10 +83,10 @@ class DB(object):
     pass
 
 
-x = DB('ty.db')
-
 
 '''
+x = DB('ty.db')
+
 x.createTable('user', ('id integer primary key autoincrement',
                        'name varchar(20)',
                        'weight varchar(20)',
