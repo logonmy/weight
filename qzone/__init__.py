@@ -9,7 +9,7 @@
 
 import os, re
 from datetime import datetime
-from qqlib import QQ
+from .qqlib import QQ
 from utils.db import DB
 
 class Qzone(QQ):
@@ -21,8 +21,8 @@ class Qzone(QQ):
             hash += (hash << 5) + ord(val)
         return hash & 0x7fffffff
 
-    def __init__(self, user, pwd):
-        self.db = str(user)+'.sqlite'
+    def __init__(self, user, pwd, datebase):
+        self.db = datebase
         super(Qzone, self).__init__(user, pwd)
         self.createQzoneDB()
         self.createEmotionTable()
@@ -110,7 +110,7 @@ class Qzone(QQ):
 
             params['pos'] = params['pos'] + params['num']
 
-
+'''
 q = Qzone(12345, '12345')
 
 def task():
@@ -125,3 +125,4 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
 sched.add_job(task, 'cron', hour='10-11')
 sched.start()
+'''
